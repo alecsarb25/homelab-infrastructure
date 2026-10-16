@@ -1,0 +1,58 @@
+# Physical infrastructure, storage, and operations
+
+## Equipment layout
+
+A repurposed TV stand provides three equipment compartments with approximately 8U of usable volume apiece. It is **not** represented as a standard 24U rack.
+
+```mermaid
+flowchart LR
+    subgraph LEFT["Left compartment (~8U)"]
+        ONT[Fiber ONT]
+        ROUTER[ISP router / firewall]
+        PVE[Five OptiPlex Micro hosts]
+    end
+    subgraph CENTER["Center compartment (~8U)"]
+        CISCO[Managed Cisco switch]
+        HP[24-port HP switch - not in use]
+        OTHER[Other equipment / power distribution]
+    end
+    subgraph RIGHT["Right compartment (~8U)"]
+        NAS1[Primary Synology NAS]
+        NAS2[Secondary Synology NAS]
+    end
+```
+
+Exact UPS and managed-PDU placement, cabling runs, ventilation, and physical dimensions are not documented here.
+
+## Storage
+
+- Two Synology NAS appliances provide personal storage and a secondary backup role.
+- Primary storage supports files, synchronization, development resources, and other lab data.
+- Earlier configuration included Synology Drive, Hyper Backup, and Hyper Backup Vault. Current backup-job health and schedules have **not** been freshly validated.
+- Synology RAID/SHR provides disk fault tolerance where configured, not an independent backup or disaster-recovery plan.
+- Both NAS devices are on site; local NAS-to-NAS backup alone is not a complete off-site 3-2-1 strategy.
+
+## Clients
+
+- Lenovo Legion Pro 7: Fedora / Windows dual boot, development and local AI workloads
+- Separate Ryzen-based Windows desktop with NVIDIA GPU
+- Wired and wireless interface assignments are not depicted
+
+## Monitoring and administration
+
+- **Uptime Kuma:** service availability checks
+- **Homepage:** consolidated service dashboard
+- **Proxmox Datacenter Manager:** Proxmox estate administration and visibility
+- Native management interfaces are also used for lab equipment
+
+## Power and recovery
+
+- Equipment is connected to UPS battery protection.
+- Power distribution includes a managed PDU.
+- Automated UPS-triggered shutdown has **not** been configured.
+- Tailscale remote access is **planned**, not operational.
+- Proxmox VM backups are deliberately not configured for disposable lab workloads.
+
+## Scope of documentation
+
+The goal is to communicate design choices, operation, and tradeoffs, not to expose live infrastructure. No IP addresses, network ranges, hostnames, credentials, serial numbers, management URLs, or exact switch firmware information are disclosed.
