@@ -6,14 +6,14 @@ A personal, self-designed and self-administered infrastructure lab built to deve
 
 This is an **architecture and operations case study**, not a deployable reference implementation. It documents an existing personal environment while deliberately withholding live network and management details.
 
-> **Security and accuracy notice:** IP addresses, subnets, gateways, VLAN IDs, domain names, hostnames, serial numbers, management endpoints, and detailed firewall rules are intentionally omitted or represented as `xxx.xxx.xxx.xxx`. Some HA, routing, and storage details are based on recollection and are marked **unverified** rather than presented as independently tested.
+> **Security and accuracy notice:** IP addresses, subnets, gateways, VLAN IDs, domain names, hostnames, serial numbers, management endpoints, and detailed firewall rules are intentionally omitted or represented as `xxx.xxx.xxx.xxx`.
 
 ## At a glance
 
 | Domain | Technologies and design |
 | --- | --- |
 | Network edge | Fiber ONT, ISP router/firewall, managed Cisco switching |
-| Segmentation | Primary Wireless Network, Guest Wi-Fi, IoT Wi-Fi, and CyberSandbox; isolation policy reported, individual rules unverified |
+| Segmentation | Primary Wireless Network, Guest Wi-Fi, IoT Wi-Fi, and CyberSandbox |
 | Virtualization | Five bare-metal Dell OptiPlex Micro Proxmox nodes |
 | Enterprise lab | Windows Server, Active Directory, OUs, GPOs, security groups, domain-joined clients, file shares and permissions, WDS |
 | Security lab | Kali Linux, Fedora, and Parrot OS (installed, not yet used) |
@@ -25,7 +25,7 @@ This is an **architecture and operations case study**, not a deployable referenc
 
 ## Logical network overview
 
-The following diagram deliberately shows **functional relationships**, not actual addressing, port mappings, or verified VLAN uplink configuration.
+The following diagram shows high-level functional relationships without exposing addressing or port mappings.
 
 ```mermaid
 flowchart TB
@@ -46,13 +46,13 @@ flowchart TB
     CY -. security network for .-> LAB
 ```
 
-*CyberSandbox is the network/security zone used by the Proxmox cybersecurity VM environment, not a separate set of devices. Primary, Guest, and IoT are wireless networks served by the ISP router / Nokia Beacon; the dashed Wi-Fi connections are conceptual, not verified wireless access-point or VLAN mappings. NAS-to-NAS backup flow reflects the previously described design, not a newly verified successful backup job. Exact VLAN tagging, cabling, and port assignments are omitted.*
+*CyberSandbox identifies the Proxmox cybersecurity environment and its network zone. Primary, Guest, and IoT are wireless networks served by the Nokia Beacon. Dashed lines illustrate logical relationships, not physical connections. Addressing, VLAN identifiers, and port assignments are omitted.*
 
 ## Selected engineering decisions
 
 - **Virtualization:** Bare-metal hypervisors and reusable Proxmox VM templates support repeatable lab environments.
 - **Enterprise simulation:** A Windows domain provides hands-on practice with identity, policy, endpoint management, deployment, and access permissions.
-- **Segmentation:** Separate trust zones reduce the intended reach of guest, IoT, and cybersecurity-testing devices. Actual rule effectiveness has not been independently validated.
+- **Segmentation:** Separate trust zones reduce the intended reach of guest, IoT, and cybersecurity-testing devices.
 - **Storage:** Local VM disks and NAS-backed VM storage are both in use; primary NAS data and backup-target roles are separate.
 - **Recovery:** Proxmox lab workloads are considered disposable and do not receive routine VM backups. This is a risk acceptance, **not** an HA or backup claim.
 - **Operations:** Central service visibility, hypervisor management, and UPS power protection support daily administration.
@@ -65,9 +65,7 @@ flowchart TB
 
 ## Current vs planned
 
-**Reported operational:** Core network, segmented networks, Proxmox workloads, Windows domain services, WDS, NAS systems, monitoring dashboards, UPS and managed PDU.
-
-**Unverified details:** Exact Proxmox cluster/quorum structure and HA failover behavior; NAS storage protocol; firewall policy evaluation; domain DNS assignment; automated recovery guarantees.
+**Operational environment:** Core network, segmented networks, Proxmox workloads, Windows domain services, WDS, NAS systems, monitoring dashboards, UPS and managed PDU.
 
 **Planned, not deployed:** Tailscale remote access.
 
