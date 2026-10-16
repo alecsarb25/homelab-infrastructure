@@ -22,13 +22,13 @@ flowchart LR
     end
 ```
 
-Exact UPS and managed-PDU placement, cabling runs, ventilation, and physical dimensions are not documented here.
+UPS and managed-PDU placement, cabling runs, and physical dimensions are omitted from this public overview.
 
 ## Storage
 
 - **Primary Synology NAS:** files, synchronization, development resources, and NAS-backed lab storage.
 - **Secondary Synology NAS:** separate local backup target for the primary NAS, previously described as using Hyper Backup Vault.
-- Earlier configuration included Synology Drive, Hyper Backup, and Hyper Backup Vault. Current backup-job health and schedules have **not** been freshly validated.
+- Earlier configuration included Synology Drive, Hyper Backup, and Hyper Backup Vault. Backup schedules and job status are intentionally not detailed in this public portfolio.
 - Synology RAID/SHR provides disk fault tolerance where configured, not an independent backup or disaster-recovery plan.
 - Both NAS devices are on site and separate devices. Local NAS-to-NAS backup alone is not a complete off-site 3-2-1 strategy.
 
@@ -36,7 +36,7 @@ Exact UPS and managed-PDU placement, cabling runs, ventilation, and physical dim
 
 - Lenovo Legion Pro 7: Fedora / Windows dual boot, development and local AI workloads
 - Separate Ryzen-based Windows desktop with NVIDIA GPU
-- Wired and wireless interface assignments are not depicted
+- Per-device network interfaces are not published
 
 ## Monitoring and administration
 
