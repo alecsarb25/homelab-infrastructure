@@ -13,7 +13,7 @@ This is an **architecture and operations case study**, not a deployable referenc
 | Domain | Technologies and design |
 | --- | --- |
 | Network edge | Fiber ONT, ISP router/firewall, managed Cisco switching |
-| Segmentation | Primary Wireless Network, Guest Wi-Fi, IoT, and CyberSandbox; isolation policy reported, individual rules unverified |
+| Segmentation | Primary Wireless Network, Guest Wi-Fi, IoT Wi-Fi, and CyberSandbox; isolation policy reported, individual rules unverified |
 | Virtualization | Five bare-metal Dell OptiPlex Micro Proxmox nodes |
 | Enterprise lab | Windows Server, Active Directory, OUs, GPOs, security groups, domain-joined clients, file shares and permissions, WDS |
 | Security lab | Kali Linux, Fedora, and Parrot OS (installed, not yet used) |
@@ -34,7 +34,7 @@ flowchart TB
     EDGE --> SW[Managed Cisco Switch]
     EDGE -. wireless connectivity .-> PR[Primary Wireless Network]
     EDGE -. wireless connectivity .-> GL[Guest Wi-Fi]
-    SW --> IOT[IoT network]
+    EDGE -. wireless connectivity .-> IOT[IoT Wi-Fi]
     SW --> CY[CyberSandbox network]
     SW --> PX[Proxmox estate: five physical nodes]
     SW --> NAS1[Primary Synology NAS: files / shared storage]
@@ -46,7 +46,7 @@ flowchart TB
     CY -. security network for .-> LAB
 ```
 
-*CyberSandbox is the network/security zone used by the Proxmox cybersecurity VM environment, not a separate set of devices. Primary and Guest are wireless networks; the dashed Wi-Fi connections are conceptual, not verified wireless access-point or VLAN mappings. NAS-to-NAS backup flow reflects the previously described design, not a newly verified successful backup job. Exact VLAN tagging, cabling, and port assignments are omitted.*
+*CyberSandbox is the network/security zone used by the Proxmox cybersecurity VM environment, not a separate set of devices. Primary, Guest, and IoT are wireless networks served by the ISP router / Nokia Beacon; the dashed Wi-Fi connections are conceptual, not verified wireless access-point or VLAN mappings. NAS-to-NAS backup flow reflects the previously described design, not a newly verified successful backup job. Exact VLAN tagging, cabling, and port assignments are omitted.*
 
 ## Selected engineering decisions
 
