@@ -26,11 +26,11 @@ Exact UPS and managed-PDU placement, cabling runs, ventilation, and physical dim
 
 ## Storage
 
-- Two Synology NAS appliances provide personal storage and a secondary backup role.
-- Primary storage supports files, synchronization, development resources, and other lab data.
+- **Primary Synology NAS:** files, synchronization, development resources, and NAS-backed lab storage.
+- **Secondary Synology NAS:** separate local backup target for the primary NAS, previously described as using Hyper Backup Vault.
 - Earlier configuration included Synology Drive, Hyper Backup, and Hyper Backup Vault. Current backup-job health and schedules have **not** been freshly validated.
 - Synology RAID/SHR provides disk fault tolerance where configured, not an independent backup or disaster-recovery plan.
-- Both NAS devices are on site; local NAS-to-NAS backup alone is not a complete off-site 3-2-1 strategy.
+- Both NAS devices are on site and separate devices. Local NAS-to-NAS backup alone is not a complete off-site 3-2-1 strategy.
 
 ## Clients
 
