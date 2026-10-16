@@ -20,7 +20,9 @@ A management-role host does not necessarily mean a separate Proxmox control-plan
 
 Domain names, hostnames, user identities, GPO settings, and permissions are omitted.
 
-### Cybersecurity environment
+### CyberSandbox: Proxmox cybersecurity environment
+
+The cybersecurity compute nodes and their VMs constitute the **CyberSandbox lab**, rather than a separate environment alongside that network zone. Exact virtual NIC assignments and VLAN tagging are not independently verified.
 
 - Kali Linux
 - Fedora Linux
@@ -52,9 +54,9 @@ flowchart TB
     MGMT -. reported management relationship .-> A
     MGMT -. reported management relationship .-> C
     A --> W[Enterprise Windows workloads]
-    C --> S[Cybersecurity / development workloads]
+    C --> S[CyberSandbox: cybersecurity VMs]
     N[Synology network storage] -. selected VM disks .-> A
     N -. selected VM disks .-> C
 ```
 
-*Logical grouping from recollection only: not a representation of confirmed cluster membership, quorum, HA dependencies, or the physical distribution of individual VMs.*
+*Logical grouping from recollection only: not a representation of confirmed cluster membership, quorum, HA dependencies, or the physical distribution of individual VMs. CyberSandbox is the security-testing compute environment and associated network zone.*
