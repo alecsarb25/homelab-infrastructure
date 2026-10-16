@@ -15,7 +15,7 @@ The operator reports firewall rules on the gateway. Exact rule behavior and whet
 | Primary | Trusted personal workstations, storage, and infrastructure access | Separate logical zone; detailed rules unverified |
 | Guest | Visitors and untrusted guest connectivity | Isolation reported, not independently tested |
 | IoT | Connected appliances and devices | Isolation reported, not independently tested |
-| CyberSandbox | Cybersecurity research and test systems | Isolation reported; most test VMs have internet access |
+| CyberSandbox | Proxmox cybersecurity nodes and their Kali/Fedora/Parrot VMs | Isolation reported; most test VMs have internet access |
 
 Sample documentation labels (not actual addresses):
 
@@ -26,6 +26,8 @@ Sample documentation labels (not actual addresses):
 | Network prefix | `xxx.xxx.xxx.xxx/xx` |
 | Management interface | `xxx.xxx.xxx.xxx` |
 | VLAN identifier | `REDACTED` |
+
+The **CyberSandbox is the cybersecurity Proxmox VM environment**, rather than a separate external network appliance or another independent set of machines. Exact physical and virtual network configuration remains redacted.
 
 ## Threat and control considerations
 
