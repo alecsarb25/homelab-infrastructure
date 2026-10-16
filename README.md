@@ -35,15 +35,16 @@ flowchart TB
     SW --> PR[Primary network]
     SW --> GL[Guest network]
     SW --> IOT[IoT network]
-    SW --> CY[CyberSandbox]
-    PR --> PX[Proxmox estate: five physical nodes]
-    PR --> NAS[Synology NAS pair]
-    PR --> CLIENTS[Legion dual-boot laptop and Windows desktop]
-    PX --> ENTERPRISE[Windows Server / AD / WDS / Windows clients]
-    PX --> LAB[Security testing and development VMs]
+    SW --> CY[CyberSandbox network]
+    SW --> PX[Proxmox estate: five physical nodes]
+    SW --> NAS[Synology NAS pair]
+    SW --> CLIENTS[Legion dual-boot laptop and Windows desktop]
+    PX --> ENTERPRISE[Enterprise group: Windows Server / AD / WDS / clients]
+    PX --> LAB[Cybersecurity Proxmox nodes / VMs]
+    CY -. security network for .-> LAB
 ```
 
-*The network grouping represents intended logical separation. The diagram does not assert which host uses which VLAN or how wireless traffic is connected. Cybersecurity workloads are associated with the CyberSandbox concept; actual VM network assignments are unverified.*
+*CyberSandbox is the network/security zone used by the Proxmox cybersecurity VM environment, not a separate set of devices. Exact VLAN tagging, cabling, and wireless paths are omitted; the dotted connection describes logical association rather than an independently verified port or tag configuration.*
 
 ## Selected engineering decisions
 
