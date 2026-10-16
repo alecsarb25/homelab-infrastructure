@@ -10,10 +10,12 @@ The operator reports firewall rules on the gateway. Exact rule behavior and whet
 
 ## Logical security zones
 
+Primary Wireless Network and Guest Wi-Fi are wireless network labels; this table does not imply that storage or wired servers are connected over Wi-Fi.
+
 | Network | Intended role | Isolation status |
 | --- | --- | --- |
-| Primary | Trusted personal workstations, storage, and infrastructure access | Separate logical zone; detailed rules unverified |
-| Guest | Visitors and untrusted guest connectivity | Isolation reported, not independently tested |
+| Primary Wireless Network | Trusted wireless client connectivity | Separate logical zone; detailed rules unverified |
+| Guest Wi-Fi | Visitor wireless connectivity | Isolation reported, not independently tested |
 | IoT | Connected appliances and devices | Isolation reported, not independently tested |
 | CyberSandbox | Proxmox cybersecurity nodes and their Kali/Fedora/Parrot VMs | Isolation reported; most test VMs have internet access |
 
