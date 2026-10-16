@@ -13,12 +13,12 @@ This is an **architecture and operations case study**, not a deployable referenc
 | Domain | Technologies and design |
 | --- | --- |
 | Network edge | Fiber ONT, ISP router/firewall, managed Cisco switching |
-| Segmentation | Primary, Guest, IoT, and CyberSandbox networks; isolation policy reported, individual rules unverified |
+| Segmentation | Primary Wireless Network, Guest Wi-Fi, IoT, and CyberSandbox; isolation policy reported, individual rules unverified |
 | Virtualization | Five bare-metal Dell OptiPlex Micro Proxmox nodes |
 | Enterprise lab | Windows Server, Active Directory, OUs, GPOs, security groups, domain-joined clients, file shares and permissions, WDS |
 | Security lab | Kali Linux, Fedora, and Parrot OS (installed, not yet used) |
 | Additional workloads | Docker containers, development environments, VM templates |
-| Storage | Two Synology NAS appliances; local and network-attached Proxmox storage |
+| Storage | Primary Synology NAS for files and development data; separate secondary Synology NAS for backups; local and network-attached Proxmox storage |
 | Monitoring and management | Uptime Kuma, Homepage, Proxmox Datacenter Manager |
 | Physical resilience | UPS-backed equipment and a managed PDU |
 | Workstations | Fedora/Windows dual-boot Legion laptop; separate Windows desktop |
@@ -32,19 +32,21 @@ flowchart TB
     WAN[Internet] --> ONT[Fiber ONT]
     ONT --> EDGE[ISP Router / Firewall]
     EDGE --> SW[Managed Cisco Switch]
-    SW --> PR[Primary network]
-    SW --> GL[Guest network]
+    EDGE -. wireless connectivity .-> PR[Primary Wireless Network]
+    EDGE -. wireless connectivity .-> GL[Guest Wi-Fi]
     SW --> IOT[IoT network]
     SW --> CY[CyberSandbox network]
     SW --> PX[Proxmox estate: five physical nodes]
-    SW --> NAS[Synology NAS pair]
+    SW --> NAS1[Primary Synology NAS: files / shared storage]
+    SW --> NAS2[Secondary Synology NAS: backup target]
+    NAS1 -. backup workflow .-> NAS2
     SW --> CLIENTS[Legion dual-boot laptop and Windows desktop]
     PX --> ENTERPRISE[Enterprise group: Windows Server / AD / WDS / clients]
     PX --> LAB[Cybersecurity Proxmox nodes / VMs]
     CY -. security network for .-> LAB
 ```
 
-*CyberSandbox is the network/security zone used by the Proxmox cybersecurity VM environment, not a separate set of devices. Exact VLAN tagging, cabling, and wireless paths are omitted; the dotted connection describes logical association rather than an independently verified port or tag configuration.*
+*CyberSandbox is the network/security zone used by the Proxmox cybersecurity VM environment, not a separate set of devices. Primary and Guest are wireless networks; the dashed Wi-Fi connections are conceptual, not verified wireless access-point or VLAN mappings. NAS-to-NAS backup flow reflects the previously described design, not a newly verified successful backup job. Exact VLAN tagging, cabling, and port assignments are omitted.*
 
 ## Selected engineering decisions
 
