@@ -38,7 +38,7 @@ Most cybersecurity lab machines can reach the internet; one machine is deliberat
 
 ## Storage integration
 
-VM disks use both **host-local disks** and **Synology NAS-backed storage**. Storage transport and live-migration eligibility are unverified. In particular, shared storage alone does not prove HA failover.
+VM disks use both **host-local disks** and network storage on the **primary Synology NAS** (exact VM placement unverified). The **secondary Synology NAS** serves as the separate backup target for primary NAS data, not as an independently confirmed VM datastore. Storage transport and live-migration eligibility are unverified. In particular, shared storage alone does not prove HA failover.
 
 ## Recovery posture
 
@@ -55,8 +55,11 @@ flowchart TB
     MGMT -. reported management relationship .-> C
     A --> W[Enterprise Windows workloads]
     C --> S[CyberSandbox: cybersecurity VMs]
-    N[Synology network storage] -. selected VM disks .-> A
-    N -. selected VM disks .-> C
+    N1[Primary Synology NAS: shared storage]
+    N2[Secondary Synology NAS: backup target]
+    N1 -. selected VM disks .-> A
+    N1 -. selected VM disks .-> C
+    N1 -. backup workflow .-> N2
 ```
 
 *Logical grouping from recollection only: not a representation of confirmed cluster membership, quorum, HA dependencies, or the physical distribution of individual VMs. CyberSandbox is the security-testing compute environment and associated network zone.*
