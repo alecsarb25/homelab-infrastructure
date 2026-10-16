@@ -2,7 +2,9 @@
 
 ## Network path
 
-**Fiber ONT → ISP router/firewall → managed Cisco switch → wired infrastructure**
+**Wired:** Fiber ONT → Nokia Beacon router/firewall → managed Cisco switch → wired infrastructure
+
+**Wireless:** Nokia Beacon → Primary Wireless Network, Guest Wi-Fi, and IoT Wi-Fi
 
 The router/firewall is a Nokia Beacon in the private environment. The specific Cisco switch model, management settings, firmware, and active port allocations are intentionally excluded.
 
@@ -10,13 +12,13 @@ The operator reports firewall rules on the gateway. Exact rule behavior and whet
 
 ## Logical security zones
 
-Primary Wireless Network and Guest Wi-Fi are wireless network labels; this table does not imply that storage or wired servers are connected over Wi-Fi.
+Primary Wireless Network, Guest Wi-Fi, and IoT Wi-Fi are wireless networks provided by the Nokia Beacon; this table does not imply that storage or wired servers are connected over Wi-Fi.
 
 | Network | Intended role | Isolation status |
 | --- | --- | --- |
 | Primary Wireless Network | Trusted wireless client connectivity | Separate logical zone; detailed rules unverified |
 | Guest Wi-Fi | Visitor wireless connectivity | Isolation reported, not independently tested |
-| IoT | Connected appliances and devices | Isolation reported, not independently tested |
+| IoT Wi-Fi | Wireless connected appliances and devices | Isolation reported, not independently tested |
 | CyberSandbox | Proxmox cybersecurity nodes and their Kali/Fedora/Parrot VMs | Isolation reported; most test VMs have internet access |
 
 Sample documentation labels (not actual addresses):
